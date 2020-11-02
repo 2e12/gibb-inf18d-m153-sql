@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Erstellungszeit: 02. Nov 2020 um 20:46
+-- Erstellungszeit: 02. Nov 2020 um 21:02
 -- Server-Version: 10.2.33-MariaDB
 -- PHP-Version: 7.3.22
 
@@ -18,8 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Datenbank: `gabriel_153`
+-- Datenbank: `inf_153_inq1_04_igwww1`
 --
+CREATE DATABASE IF NOT EXISTS `inf_153_inq1_04_igwww1` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `inf_153_inq1_04_igwww1`;
 
 -- --------------------------------------------------------
 
@@ -27,11 +29,12 @@ SET time_zone = "+00:00";
 -- Tabellenstruktur für Tabelle `Abschnitt`
 --
 
+DROP TABLE IF EXISTS `Abschnitt`;
 CREATE TABLE `Abschnitt` (
   `id` int(11) NOT NULL,
   `nummer` int(11) NOT NULL,
   `name` tinytext NOT NULL,
-  `aufnahme datum` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Zeitpunkt an welchem Eintrag in die Datenbank aufgenommen wurde',
+  `aufnahme datum` timestamp NOT NULL COMMENT 'Zeitpunkt an welchem Eintrag in die Datenbank aufgenommen wurde',
   `weg_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -51,6 +54,7 @@ INSERT INTO `Abschnitt` (`id`, `nummer`, `name`, `aufnahme datum`, `weg_id`) VAL
 -- Tabellenstruktur für Tabelle `Aufgabe`
 --
 
+DROP TABLE IF EXISTS `Aufgabe`;
 CREATE TABLE `Aufgabe` (
   `id` int(11) NOT NULL,
   `name` tinytext NOT NULL
@@ -71,6 +75,7 @@ INSERT INTO `Aufgabe` (`id`, `name`) VALUES
 -- Tabellenstruktur für Tabelle `Aussicht`
 --
 
+DROP TABLE IF EXISTS `Aussicht`;
 CREATE TABLE `Aussicht` (
   `id` int(11) NOT NULL,
   `name` tinytext NOT NULL
@@ -91,6 +96,7 @@ INSERT INTO `Aussicht` (`id`, `name`) VALUES
 -- Stellvertreter-Struktur des Views `BarrierFreePaths`
 -- (Siehe unten für die tatsächliche Ansicht)
 --
+DROP VIEW IF EXISTS `BarrierFreePaths`;
 CREATE TABLE `BarrierFreePaths` (
 `nummer` int(11)
 ,`name` tinytext
@@ -104,6 +110,7 @@ CREATE TABLE `BarrierFreePaths` (
 -- Tabellenstruktur für Tabelle `Belag`
 --
 
+DROP TABLE IF EXISTS `Belag`;
 CREATE TABLE `Belag` (
   `id` int(11) NOT NULL,
   `name` text NOT NULL
@@ -127,6 +134,7 @@ INSERT INTO `Belag` (`id`, `name`) VALUES
 -- Tabellenstruktur für Tabelle `Beschreibung`
 --
 
+DROP TABLE IF EXISTS `Beschreibung`;
 CREATE TABLE `Beschreibung` (
   `id` int(11) NOT NULL,
   `name` tinytext NOT NULL
@@ -150,6 +158,7 @@ INSERT INTO `Beschreibung` (`id`, `name`) VALUES
 -- Tabellenstruktur für Tabelle `Bild`
 --
 
+DROP TABLE IF EXISTS `Bild`;
 CREATE TABLE `Bild` (
   `id` int(11) NOT NULL,
   `abschnitt_id` int(11) NOT NULL,
@@ -164,6 +173,7 @@ CREATE TABLE `Bild` (
 -- Tabellenstruktur für Tabelle `Charakter`
 --
 
+DROP TABLE IF EXISTS `Charakter`;
 CREATE TABLE `Charakter` (
   `id` int(11) NOT NULL,
   `name` tinytext NOT NULL
@@ -184,6 +194,7 @@ INSERT INTO `Charakter` (`id`, `name`) VALUES
 -- Tabellenstruktur für Tabelle `Eigentümer`
 --
 
+DROP TABLE IF EXISTS `Eigentümer`;
 CREATE TABLE `Eigentümer` (
   `id` int(11) NOT NULL,
   `name` tinytext NOT NULL
@@ -203,6 +214,7 @@ INSERT INTO `Eigentümer` (`id`, `name`) VALUES
 -- Tabellenstruktur für Tabelle `Gegend`
 --
 
+DROP TABLE IF EXISTS `Gegend`;
 CREATE TABLE `Gegend` (
   `id` int(11) NOT NULL,
   `aussicht_id` int(11) NOT NULL,
@@ -226,6 +238,7 @@ INSERT INTO `Gegend` (`id`, `aussicht_id`, `umgebung_id`, `geräuschkulisse_id`)
 -- Stellvertreter-Struktur des Views `GeneralData`
 -- (Siehe unten für die tatsächliche Ansicht)
 --
+DROP VIEW IF EXISTS `GeneralData`;
 CREATE TABLE `GeneralData` (
 `Abschnitt Name` tinytext
 ,`nummer` int(11)
@@ -243,6 +256,7 @@ CREATE TABLE `GeneralData` (
 -- Tabellenstruktur für Tabelle `Geräuschkulisse`
 --
 
+DROP TABLE IF EXISTS `Geräuschkulisse`;
 CREATE TABLE `Geräuschkulisse` (
   `id` int(11) NOT NULL,
   `name` tinytext NOT NULL
@@ -263,6 +277,7 @@ INSERT INTO `Geräuschkulisse` (`id`, `name`) VALUES
 -- Tabellenstruktur für Tabelle `Infrastruktur`
 --
 
+DROP TABLE IF EXISTS `Infrastruktur`;
 CREATE TABLE `Infrastruktur` (
   `id` int(11) NOT NULL,
   `name` tinytext NOT NULL
@@ -286,6 +301,7 @@ INSERT INTO `Infrastruktur` (`id`, `name`) VALUES
 -- Tabellenstruktur für Tabelle `Infrastruktur_Weg`
 --
 
+DROP TABLE IF EXISTS `Infrastruktur_Weg`;
 CREATE TABLE `Infrastruktur_Weg` (
   `infrastruktur_id` int(11) NOT NULL,
   `weg_id` int(11) NOT NULL
@@ -307,6 +323,7 @@ INSERT INTO `Infrastruktur_Weg` (`infrastruktur_id`, `weg_id`) VALUES
 -- Tabellenstruktur für Tabelle `Pflege`
 --
 
+DROP TABLE IF EXISTS `Pflege`;
 CREATE TABLE `Pflege` (
   `weg_id` int(11) NOT NULL,
   `aufgabe_id` int(11) NOT NULL
@@ -318,6 +335,7 @@ CREATE TABLE `Pflege` (
 -- Tabellenstruktur für Tabelle `Route`
 --
 
+DROP TABLE IF EXISTS `Route`;
 CREATE TABLE `Route` (
   `id` int(11) NOT NULL,
   `nummer` smallint(6) NOT NULL
@@ -336,6 +354,7 @@ INSERT INTO `Route` (`id`, `nummer`) VALUES
 -- Tabellenstruktur für Tabelle `Route_Abschnitt`
 --
 
+DROP TABLE IF EXISTS `Route_Abschnitt`;
 CREATE TABLE `Route_Abschnitt` (
   `route_id` int(11) DEFAULT NULL,
   `abschnitt_id` int(11) DEFAULT NULL
@@ -356,6 +375,7 @@ INSERT INTO `Route_Abschnitt` (`route_id`, `abschnitt_id`) VALUES
 -- Stellvertreter-Struktur des Views `ShowTraffic`
 -- (Siehe unten für die tatsächliche Ansicht)
 --
+DROP VIEW IF EXISTS `ShowTraffic`;
 CREATE TABLE `ShowTraffic` (
 `nummer` int(11)
 ,`name` tinytext
@@ -372,6 +392,7 @@ CREATE TABLE `ShowTraffic` (
 -- Tabellenstruktur für Tabelle `Umgebung`
 --
 
+DROP TABLE IF EXISTS `Umgebung`;
 CREATE TABLE `Umgebung` (
   `id` int(11) NOT NULL,
   `name` tinytext NOT NULL
@@ -396,6 +417,7 @@ INSERT INTO `Umgebung` (`id`, `name`) VALUES
 -- Tabellenstruktur für Tabelle `Verkehr`
 --
 
+DROP TABLE IF EXISTS `Verkehr`;
 CREATE TABLE `Verkehr` (
   `id` int(11) NOT NULL,
   `velo` int(11) DEFAULT NULL,
@@ -421,6 +443,7 @@ INSERT INTO `Verkehr` (`id`, `velo`, `biker`, `rollstuhl`, `kinderwagen`, `motov
 -- Tabellenstruktur für Tabelle `Verlauf`
 --
 
+DROP TABLE IF EXISTS `Verlauf`;
 CREATE TABLE `Verlauf` (
   `id` int(11) NOT NULL,
   `name` tinytext NOT NULL
@@ -441,6 +464,7 @@ INSERT INTO `Verlauf` (`id`, `name`) VALUES
 -- Tabellenstruktur für Tabelle `Weg`
 --
 
+DROP TABLE IF EXISTS `Weg`;
 CREATE TABLE `Weg` (
   `id` int(11) NOT NULL,
   `gefälle` tinytext NOT NULL COMMENT 'Gefälle in %',
@@ -471,6 +495,7 @@ INSERT INTO `Weg` (`id`, `gefälle`, `länge`, `breite`, `belag_id`, `charakter_
 -- Tabellenstruktur für Tabelle `Wegrand`
 --
 
+DROP TABLE IF EXISTS `Wegrand`;
 CREATE TABLE `Wegrand` (
   `id` int(11) NOT NULL,
   `name` tinytext NOT NULL
@@ -493,7 +518,8 @@ INSERT INTO `Wegrand` (`id`, `name`) VALUES
 --
 DROP TABLE IF EXISTS `BarrierFreePaths`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`gabriel_153`@`%` SQL SECURITY DEFINER VIEW `BarrierFreePaths`  AS  select `Abschnitt`.`nummer` AS `nummer`,`Abschnitt`.`name` AS `name`,`Kinderwagen`.`name` AS `Kinderwagen`,`Rollstuhl`.`name` AS `Rollstuhl` from ((((`Abschnitt` join `Weg` on(`Weg`.`id` = `Abschnitt`.`weg_id`)) join `Verkehr` on(`Weg`.`verkehr_id` = `Verkehr`.`id`)) join `Beschreibung` `Kinderwagen` on(`Verkehr`.`kinderwagen` = `Kinderwagen`.`id`)) join `Beschreibung` `Rollstuhl` on(`Verkehr`.`rollstuhl` = `Rollstuhl`.`id`)) where `Kinderwagen`.`id` = 6 or `Rollstuhl`.`id` = 6 ;
+DROP VIEW IF EXISTS `BarrierFreePaths`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`inf_153_inq1_04_igwww1`@`%` SQL SECURITY DEFINER VIEW `BarrierFreePaths`  AS  select `Abschnitt`.`nummer` AS `nummer`,`Abschnitt`.`name` AS `name`,`Kinderwagen`.`name` AS `Kinderwagen`,`Rollstuhl`.`name` AS `Rollstuhl` from ((((`Abschnitt` join `Weg` on(`Weg`.`id` = `Abschnitt`.`weg_id`)) join `Verkehr` on(`Weg`.`verkehr_id` = `Verkehr`.`id`)) join `Beschreibung` `Kinderwagen` on(`Verkehr`.`kinderwagen` = `Kinderwagen`.`id`)) join `Beschreibung` `Rollstuhl` on(`Verkehr`.`rollstuhl` = `Rollstuhl`.`id`)) where `Kinderwagen`.`id` = 6 or `Rollstuhl`.`id` = 6 ;
 
 -- --------------------------------------------------------
 
@@ -502,7 +528,8 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`gabriel_153`@`%` SQL SECURITY DEFINER VIEW `
 --
 DROP TABLE IF EXISTS `GeneralData`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`gabriel_153`@`%` SQL SECURITY DEFINER VIEW `GeneralData`  AS  select `Abschnitt`.`name` AS `Abschnitt Name`,`Abschnitt`.`nummer` AS `nummer`,`Weg`.`gefälle` AS `gefälle`,`Weg`.`länge` AS `länge`,`Eigentümer`.`name` AS `Eigentümer`,`Verlauf`.`name` AS `Verlauf`,`Belag`.`name` AS `Belag`,`Wegrand`.`name` AS `Wegrand` from (((((`Abschnitt` join `Weg` on(`Weg`.`id` = `Abschnitt`.`weg_id`)) join `Eigentümer` on(`Weg`.`eigentümer_id` = `Eigentümer`.`id`)) join `Verlauf` on(`Weg`.`verlauf_id` = `Verlauf`.`id`)) join `Belag` on(`Weg`.`belag_id` = `Belag`.`id`)) join `Wegrand` on(`Weg`.`wegrand_id` = `Wegrand`.`id`)) ;
+DROP VIEW IF EXISTS `GeneralData`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`inf_153_inq1_04_igwww1`@`%` SQL SECURITY DEFINER VIEW `GeneralData`  AS  select `Abschnitt`.`name` AS `Abschnitt Name`,`Abschnitt`.`nummer` AS `nummer`,`Weg`.`gefälle` AS `gefälle`,`Weg`.`länge` AS `länge`,`Eigentümer`.`name` AS `Eigentümer`,`Verlauf`.`name` AS `Verlauf`,`Belag`.`name` AS `Belag`,`Wegrand`.`name` AS `Wegrand` from (((((`Abschnitt` join `Weg` on(`Weg`.`id` = `Abschnitt`.`weg_id`)) join `Eigentümer` on(`Weg`.`eigentümer_id` = `Eigentümer`.`id`)) join `Verlauf` on(`Weg`.`verlauf_id` = `Verlauf`.`id`)) join `Belag` on(`Weg`.`belag_id` = `Belag`.`id`)) join `Wegrand` on(`Weg`.`wegrand_id` = `Wegrand`.`id`)) ;
 
 -- --------------------------------------------------------
 
@@ -511,7 +538,8 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`gabriel_153`@`%` SQL SECURITY DEFINER VIEW `
 --
 DROP TABLE IF EXISTS `ShowTraffic`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`gabriel_153`@`%` SQL SECURITY DEFINER VIEW `ShowTraffic`  AS  select `Abschnitt`.`nummer` AS `nummer`,`Abschnitt`.`name` AS `name`,`Biker`.`name` AS `Biker`,`Velo`.`name` AS `Velo`,`Motoverkehr`.`name` AS `Motoverkehr`,`Kinderwagen`.`name` AS `Kinderwagen`,`Rollstuhl`.`name` AS `Rollstuhl` from (((((((`Abschnitt` join `Weg` on(`Weg`.`id` = `Abschnitt`.`weg_id`)) join `Verkehr` on(`Weg`.`verkehr_id` = `Verkehr`.`id`)) join `Beschreibung` `Biker` on(`Verkehr`.`biker` = `Biker`.`id`)) join `Beschreibung` `Velo` on(`Verkehr`.`velo` = `Velo`.`id`)) join `Beschreibung` `Motoverkehr` on(`Verkehr`.`motoverkehr` = `Motoverkehr`.`id`)) join `Beschreibung` `Kinderwagen` on(`Verkehr`.`kinderwagen` = `Kinderwagen`.`id`)) join `Beschreibung` `Rollstuhl` on(`Verkehr`.`rollstuhl` = `Rollstuhl`.`id`)) ;
+DROP VIEW IF EXISTS `ShowTraffic`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`inf_153_inq1_04_igwww1`@`%` SQL SECURITY DEFINER VIEW `ShowTraffic`  AS  select `Abschnitt`.`nummer` AS `nummer`,`Abschnitt`.`name` AS `name`,`Biker`.`name` AS `Biker`,`Velo`.`name` AS `Velo`,`Motoverkehr`.`name` AS `Motoverkehr`,`Kinderwagen`.`name` AS `Kinderwagen`,`Rollstuhl`.`name` AS `Rollstuhl` from (((((((`Abschnitt` join `Weg` on(`Weg`.`id` = `Abschnitt`.`weg_id`)) join `Verkehr` on(`Weg`.`verkehr_id` = `Verkehr`.`id`)) join `Beschreibung` `Biker` on(`Verkehr`.`biker` = `Biker`.`id`)) join `Beschreibung` `Velo` on(`Verkehr`.`velo` = `Velo`.`id`)) join `Beschreibung` `Motoverkehr` on(`Verkehr`.`motoverkehr` = `Motoverkehr`.`id`)) join `Beschreibung` `Kinderwagen` on(`Verkehr`.`kinderwagen` = `Kinderwagen`.`id`)) join `Beschreibung` `Rollstuhl` on(`Verkehr`.`rollstuhl` = `Rollstuhl`.`id`)) ;
 
 --
 -- Indizes der exportierten Tabellen
